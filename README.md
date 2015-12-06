@@ -150,3 +150,8 @@ This keeps the AutoMapper configuration close to the affected type. Sometimes, y
 
 AutoAutoMapper's `AutoProfiler.RegisterProfiles()` will still discover these implementations, even though they are nested within an enclosing class.
 
+## Tests
+
+The tests are written with NUnit 3. If you want to execute the tests in Visual Studio, you will need the following extension:
+https://visualstudiogallery.msdn.microsoft.com/0da0f6bd-9bb6-4ae3-87a8-537788622f2d
+

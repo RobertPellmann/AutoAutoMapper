@@ -13,6 +13,44 @@ namespace AutoAutoMapper
     public static class AutoProfiler
     {
         /// <summary>
+        /// Scans all assemblies that are selected by the Selector and its parameter.
+        /// Only assemblies loaded already into the AppDomain are checked.
+        /// </summary>
+        /// <param name="selector"></param>
+        /// <param name="selectorParam"></param>
+        public static void RegisterProfiles(Selector selector, string selectorParam)
+        {
+            var assemblies = (from assembly in AppDomain.CurrentDomain.GetAssemblies()
+                          where !assembly.IsDynamic
+                          where !assembly.ReflectionOnly
+                          select assembly).ToArray();
+
+            var selectedAssemblies = assemblies.Where(assembly =>
+            {
+                var simpleAssemblyName = assembly.GetName().Name;
+                switch (selector)
+                {
+                    case Selector.StartsWith:
+                        return simpleAssemblyName.StartsWith(selectorParam);
+                    case Selector.Contains:
+                        return simpleAssemblyName.Contains(selectorParam);
+                    default: //selector == Selector.All
+                        return true;
+                }
+            });
+
+            RegisterProfiles(selectedAssemblies);
+
+        }
+
+        public static void RegisterProfiles(Selector selector, params string[] selectorParams)
+        {
+            foreach(var scanModeParam in selectorParams)
+            {
+                RegisterProfiles(selector, scanModeParam);
+            }
+        }
+        /// <summary>
         /// Scans all types in each Assembly argument for AutoMapper Profile classes
         /// and adds each to the AutoMapper Configuration.
         /// </summary>
