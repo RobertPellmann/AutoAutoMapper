@@ -16,6 +16,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGetPushes", "NuGetPushes"
 	ProjectSection(SolutionItems) = preProject
 		NuGetPushes\AutoAutoMapper.0.1.0.0.nupkg = NuGetPushes\AutoAutoMapper.0.1.0.0.nupkg
 		NuGetPushes\AutoAutoMapper.0.2.0.0.nupkg = NuGetPushes\AutoAutoMapper.0.2.0.0.nupkg
+		.nuget\AutoAutoMapper.4.1.1.0.nupkg = .nuget\AutoAutoMapper.4.1.1.0.nupkg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C01F7802-B953-49A5-9B88-77FFD2FEB1F3}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global
