@@ -34,8 +34,10 @@ namespace AutoAutoMapper
                         return simpleAssemblyName.StartsWith(selectorParam);
                     case Selector.Contains:
                         return simpleAssemblyName.Contains(selectorParam);
+                    case Selector.Equals:
+                        return simpleAssemblyName == selectorParam;
                     default: //selector == Selector.All
-                        return true;
+                        return false;
                 }
             });
 
@@ -45,11 +47,20 @@ namespace AutoAutoMapper
 
         public static void RegisterProfiles(Selector selector, params string[] selectorParams)
         {
-            foreach(var scanModeParam in selectorParams)
+            foreach(var selectorParam in selectorParams)
             {
-                RegisterProfiles(selector, scanModeParam);
+                RegisterProfiles(selector, selectorParam);
             }
         }
+
+        public static void RegisterProfiles(List<KeyValuePair<Selector,string>> selectorList)
+        {
+            foreach(var selector in selectorList)
+            {
+                RegisterProfiles(selector.Key, selector.Value);
+            }
+        }
+
         /// <summary>
         /// Scans all types in each Assembly argument for AutoMapper Profile classes
         /// and adds each to the AutoMapper Configuration.
