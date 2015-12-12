@@ -86,8 +86,9 @@ namespace AutoAutoMapper
         {
             // store service constructor if any
             var serviceCtor = ((ConfigurationStore)Mapper.Configuration).ServiceCtor;
-            Mapper.Initialize(configuration =>
-                GetConfiguration(Mapper.Configuration, EnsureAssembly(assemblies, Assembly.GetCallingAssembly())));
+            //Mapper.Initialize(configuration =>
+            //    GetConfiguration(Mapper.Configuration, EnsureAssembly(assemblies, Assembly.GetCallingAssembly())));
+            GetConfiguration(Mapper.Configuration, EnsureAssembly(assemblies, Assembly.GetCallingAssembly()));
 
             // restore service constructor if any
             if (serviceCtor.Target != null)
